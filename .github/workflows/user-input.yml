@@ -25,6 +25,7 @@ jobs:
   job2:
     needs: [ job1 ]
     uses: AnjuBhole/spring-mocroservices/.github/workflows/reusable-wf.yml@main
+    secrets: inherit
 
 
 
