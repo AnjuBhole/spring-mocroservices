@@ -13,15 +13,12 @@ permissions:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    outputs:
-      user_value: ${{ steps.set_output.outputs.variable_value }}
     steps:
       - name: Capture User Input
         env:
           TF_VAR_user_variable: ${{ inputs.user_variable }}
         id: set_output
-        run: | 
-          echo "::set-output name=variable_value::${{ github.event.inputs.user_variable }}"
+
 
   job2:
     needs: [ job1 ]
