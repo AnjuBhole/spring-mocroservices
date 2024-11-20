@@ -25,6 +25,8 @@ jobs:
           echo "::set-output name=variable_value::${{ github.event.inputs.user_variable }}"
           echo ${{ inputs.user_variable }}
           echo TF_VAR_user_variable
+          echo "user_variable = \"${TF_VAR_user_variable}\"" > tfvars/dev.tfvars
+
 
   job2:
     needs: [ job1 ]
