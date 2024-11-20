@@ -1,9 +1,19 @@
 on:
   workflow_call:
 
+
+  workflow_dispatch:
+    inputs:
+      user_variable:
+        description: "Enter a value to pass to Terraform"
+        required: true
+        type: number
+
 jobs:
   job1:
     runs-on: ubuntu-latest
+    env:
+      TF_VAR_user_variable =  ${{ github.event.inputs.user_variable }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
