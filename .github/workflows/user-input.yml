@@ -1,0 +1,31 @@
+on:
+  workflow_dispatch:
+    inputs:
+      user_variable:
+        description: "Enter a value to pass to Terraform"
+        required: true
+        type: number
+
+
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      user_value: ${{ steps.set_output.outputs.variable_value }}
+    steps:
+      - name: Capture User Input
+        id: set_output
+        run: | 
+          echo ${{ github.event.inputs.user_variable }}
+          echo "::set-output name=variable_value::${{ github.event.inputs.user_variable }}"
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: Use Retained Value in Another Job
+        env:
+          RETAINED_VALUE: ${{ needs.job1.outputs.user_value }}
+        run: |
+          echo "The retained value is: $RETAINED_VALUE"
