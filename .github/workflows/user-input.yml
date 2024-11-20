@@ -22,8 +22,9 @@ jobs:
 
   job2:
     ci:
-    needs: [ job1 ]
-    uses: AnjuBhole/spring-mocroservices/.github/workflows/reusable-wf.yml@main
+      name: reuse
+      needs: [ job1 ]
+      uses: AnjuBhole/spring-mocroservices/.github/workflows/reusable-wf.yml@main
 
 
 
