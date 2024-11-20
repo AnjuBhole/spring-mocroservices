@@ -27,7 +27,7 @@ jobs:
       RETAINED_VALUE: ${{ needs.job1.outputs.user_value }}
       run: |
         echo "The retained value is: $RETAINED_VALUE"
-    uses: .github/workflows/reusable-wf.yml
+    uses: AnjuBhole/spring-mocroservices/.github/workflows/reusable-wf.yml
 
 
 
