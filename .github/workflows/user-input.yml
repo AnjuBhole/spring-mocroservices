@@ -17,6 +17,8 @@ jobs:
       user_value: ${{ steps.set_output.outputs.variable_value }}
     steps:
       - name: Capture User Input
+        env:
+          TF_VAR_user_variable: ${{ inputs.user_variable }}
         id: set_output
         run: | 
           echo ${{ github.event.inputs.user_variable }}
