@@ -20,9 +20,9 @@ jobs:
           echo ${{ github.event.inputs.user_variable }}
           echo "::set-output name=variable_value::${{ github.event.inputs.user_variable }}"
 
-      - name: reuse
-        needs: [ job1 ]
-        uses: AnjuBhole/spring-mocroservices/.github/workflows/reusable-wf.yml@main
+  job2:
+    needs: [ job1 ]
+    uses: AnjuBhole/spring-mocroservices/.github/workflows/reusable-wf.yml@main
 
 
 
