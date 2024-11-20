@@ -18,7 +18,8 @@ jobs:
         env:
           TF_VAR_user_variable: ${{ inputs.user_variable }}
         id: set_output
-
+        run: | 
+          echo ${{ inputs.user_variable }}
 
   job2:
     needs: [ job1 ]
