@@ -23,7 +23,11 @@ jobs:
   job2:
     ci:
     needs: [ job1 ]
-    uses: AnjuBhole/spring-mocroservices/.github/workflows/reusable-wf.yml
+    env:
+      RETAINED_VALUE: ${{ needs.job1.outputs.user_value }}
+      run: |
+        echo "The retained value is: $RETAINED_VALUE"
+    uses: AnjuBhole/spring-mocroservices/.github/workflows/reusable-wf.yml@main
 
 
 
