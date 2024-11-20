@@ -14,6 +14,6 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "example" {
   count = var.user_variable
-  name     = "example-resources"
+  name     = "example-resources-${count.index}"
   location = "West Europe"
 }
