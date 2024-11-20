@@ -21,25 +21,14 @@ jobs:
           echo "::set-output name=variable_value::${{ github.event.inputs.user_variable }}"
 
   job2:
-    runs-on: ubuntu-latest
+    ci:
     needs: job1
-    steps:
-      - name: Use Retained Value in Another Job
-        env:
-          RETAINED_VALUE: ${{ needs.job1.outputs.user_value }}
-        run: |
-          echo "The retained value is: $RETAINED_VALUE"
-      - name: Checkout code
-        uses: actions/checkout@v2
+    env:
+      RETAINED_VALUE: ${{ needs.job1.outputs.user_value }}
+      run: |
+        echo "The retained value is: $RETAINED_VALUE"
+    uses: .github/workflows/reusable-wf.yml
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: '1.4.0'
 
-      - name: Initialize Terraform
-        run: terraform init
 
-      - name: Plan Terraform configuration
-        run: terraform plan
 
